@@ -58,15 +58,15 @@ let vowelBonusScore = function(word){
    let wordArr = word.split('');
    let bonusScore = 0;
    for (i = 0; i< wordArr.length; i ++){
-      if(wordArr[i] === 'A'){
+      if(wordArr[i] === 'a'){
          bonusScore +=3
-      }else if (wordArr[i] === 'E'){
+      }else if (wordArr[i] === 'e'){
          bonusScore+=3
-      }else if(wordArr[i] === 'I'){
+      }else if(wordArr[i] === 'i'){
          bonusScore += 3
-      }else if(wordArr[i] === 'O'){
+      }else if(wordArr[i] === 'o'){
          bonusScore += 3
-      }else if(wordArr[i] === 'U'){
+      }else if(wordArr[i] === 'u'){
          bonusScore += 3
       }else{
          bonusScore ++
@@ -81,7 +81,7 @@ let vowelBonusScore = function(word){
 
 // let word = '';
 
-let scrabbleScorer =  function (word){
+let scrabbleScore =  function (word){
       word = word.toLowerCase();
       let wordArr = word.split('');
       let score = 0;
@@ -101,19 +101,19 @@ let scrabbleScorer =  function (word){
 const scoringAlgorithms = [{
    'name': 'Simple Score',
    'description': 'A function with parameter for users input that returns a score',
-   'scoreFunction': simpleScorer = function (word){
+   'scorerFunction': simpleScorer = function (word){
       return simpleScore(word)
    }
 }, {
    'name': "Bonus Vowels",
    'description': "Vowels are 3 pts, consonants are 1 pt.",
-   'scoreFunction': vowelBonusScorer = function (word){
+   'scorerFunction': vowelBonusScorer = function (word){
      return vowelBonusScore(word)
    }
 }, {'name': 'Scrabble',
 'description': 'The traditional scoring algorithum',
-'scoreFunction': ScrabbleScore = function (word){
-   return scrabbleScorer(word)
+'scorerFunction': scrabbleScorer = function (word){
+   return scrabbleScore(word)
 }}];
 // console.log(scoringAlgorithms[2].scoreFunction);
 function scorerPrompt() {
