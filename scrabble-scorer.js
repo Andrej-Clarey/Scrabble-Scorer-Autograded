@@ -45,7 +45,7 @@ function initialPrompt() {
 // console.log(initialPrompt());
 
 let simpleScore = function(word){
-   word = word.toUpperCase();
+   word = word.toLowerCase();
    let score = 0;
    score = word.length
    return score
@@ -54,7 +54,7 @@ let simpleScore = function(word){
 // console.log(simpleScorer());
 
 let vowelBonusScore = function(word){
-   word = word.toUpperCase();
+   word = word.toLowerCase();
    let wordArr = word.split('');
    let bonusScore = 0;
    for (i = 0; i< wordArr.length; i ++){
@@ -81,13 +81,22 @@ let vowelBonusScore = function(word){
 
 // let word = '';
 
-let scrabbleScorer = {
-   'name': 'Scrabble',
-   'description': 'The traditional scoring algorithum',
-   'scoreFunction': oldScrabbleScore = function (word){
-      return oldScrabbleScorer(word)
-   },
-};
+let scrabbleScorer =  function (word){
+      word = word.toLowerCase();
+      let wordArr = word.split('');
+      let score = 0;
+      for(i = 0; i < word.length; i ++){
+         // console.log(newPointStructure);
+         for(key in newPointStructure){
+            if(word[i] === key){
+               score += newPointStructure[word[i]]
+               // console.log(score);
+            }
+         }
+      }
+      return score
+      // return oldScrabbleScorer(word)
+   };
 
 const scoringAlgorithms = [{
    'name': 'Simple Score',
@@ -103,8 +112,8 @@ const scoringAlgorithms = [{
    }
 }, {'name': 'Scrabble',
 'description': 'The traditional scoring algorithum',
-'scoreFunction': oldScrabbleScore = function (word){
-   return oldScrabbleScorer(word)
+'scoreFunction': ScrabbleScore = function (word){
+   return scrabbleScorer(word)
 }}];
 // console.log(scoringAlgorithms[2].scoreFunction);
 function scorerPrompt() {
@@ -129,17 +138,18 @@ function transform(oldPointStructure) {
        for (i = 0; i < oldPointStructure[key].length; i ++){
          // console.log(oldPointStructure[key][i]);
          // console.log(key);
-         newPts[oldPointStructure[key][i].toLowerCase()] = key
+         newPts[oldPointStructure[key][i].toLowerCase()] = Number(key)
        }
     }
  return newPts
  };
- console.log(transform(oldPointStructure));
+//  console.log(transform(oldPointStructure));
 
 let newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
    // initialPrompt();
+   transform(oldPointStructure);
    scorerPrompt();
 }
 
